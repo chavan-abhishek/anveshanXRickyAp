@@ -51,7 +51,7 @@ const SosDashboard = () => {
 
   const connectWebSocket = () => {
     try {
-      const wsUrl = 'ws://localhost:8080/ws-ricky';
+      const wsUrl = 'wss://ec2-13-220-53-209.compute-1.amazonaws.com/ws-ricky';
       wsRef.current = new WebSocket(wsUrl);
       
       wsRef.current.onopen = () => {

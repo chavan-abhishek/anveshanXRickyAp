@@ -65,7 +65,7 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
 
   const fetchGeofenceInfo = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/geofence/info');
+      const response = await fetch('https://ec2-13-220-53-209.compute-1.amazonaws.com/api/geofence/info');
       const data = await response.json();
       setGeofenceInfo(data);
     } catch (error) {
@@ -75,7 +75,9 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
 
   const connectWebSocket = () => {
     try {
-      wsRef.current = new WebSocket('ws://localhost:8080/ws-ricky');
+      wsRef.current = new WebSocket(
+  'wss://ec2-13-220-53-209.compute-1.amazonaws.com/ws-ricky'
+);
       
       wsRef.current.onmessage = (event) => {
         const data = JSON.parse(event.data);
