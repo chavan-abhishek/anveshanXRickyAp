@@ -38,7 +38,7 @@ const geofenceViolationIcon = new L.Icon({
 
 const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.2090] }) => {
   const [mapCenter, setMapCenter] = useState(center);
-  const [geofenceInfo, setGeofenceInfo] = useState(null);
+  // const [geofenceInfo, setGeofenceInfo] = useState(null);
   const [liveLocations, setLiveLocations] = useState({});
   const mapRef = useRef();
   const wsRef = useRef();
@@ -52,7 +52,6 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
   ]);
 
   useEffect(() => {
-    fetchGeofenceInfo();
     connectWebSocket();
     simulateRealTimeUpdates();
     
@@ -62,16 +61,6 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
       }
     };
   }, []);
-
-  const fetchGeofenceInfo = async () => {
-    try {
-      const response = await fetch('https://ec2-13-220-53-209.compute-1.amazonaws.com/api/geofence/info');
-      const data = await response.json();
-      setGeofenceInfo(data);
-    } catch (error) {
-      console.error('Error fetching geofence info:', error);
-    }
-  };
 
   const connectWebSocket = () => {
     try {
@@ -140,12 +129,12 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
             <div className="w-4 h-4 bg-orange-500 rounded-full mr-2"></div>
             <span>Geofence Violations</span>
           </div>
-          {geofenceInfo && (
+          {/* {geofenceInfo && (
             <div className="text-xs text-gray-600 border-t pt-2 mt-2">
               <div>Geofence: {geofenceInfo.radiusKm}km radius</div>
               <div>Center: Delhi ({geofenceInfo.centerLat.toFixed(4)}, {geofenceInfo.centerLon.toFixed(4)})</div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -162,7 +151,7 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
         />
 
         {/* Geofence Circle */}
-        {geofenceInfo && (
+        {/* {geofenceInfo && (
           <Circle
             center={[geofenceInfo.centerLat, geofenceInfo.centerLon]}
             radius={geofenceInfo.radiusMeters}
@@ -174,7 +163,7 @@ const LiveTrackingMap = ({ vehicles = [], sosAlerts = [], center = [28.6139, 77.
               dashArray: '5, 10'
             }}
           />
-        )}
+        )} */}
 
         {/* Vehicle Markers */}
         {liveVehicles.map(vehicle => {
