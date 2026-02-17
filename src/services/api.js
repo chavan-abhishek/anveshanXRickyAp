@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Single source of truth for backend URL (both dev & prod)
 const API_BASE_URL =
-  'http://ec2-3-110-29-119.ap-south-1.compute.amazonaws.com:8080/api';
+  'https://ec2-3-110-29-119.ap-south-1.compute.amazonaws.com/api';
 
 console.log('📡 API Base URL:', API_BASE_URL);
 
